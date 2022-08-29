@@ -4,7 +4,6 @@ var request = new XMLHttpRequest();
 request.open('GET', '0.html', false);
 request.send();
 json = {}
-json['t'] + parser.parseFromString(request.responseText, 'text/html').querySelectorAll('A')[12].attributes.href.value.split('=')[2] + '":{lock:';
 if(parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.locked-icon').length == 0){
 	json.lock = false;
 }else{
@@ -29,4 +28,5 @@ for(var item = 0; item < pages; item++){
 		json.posts[json.posts.length] = null;
 	}
 }
-console.log(JSON.stringify(json) + ',');
+document.body.innerHTML = '<CODE></CODE>';
+document.querySelector('CODE').innerTEXT = '"t' + parser.parseFromString(request.responseText, 'text/html').querySelectorAll('A')[12].attributes.href.value.split('=')[2] + '":' + JSON.stringify(json) + ',';
