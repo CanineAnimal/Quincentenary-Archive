@@ -11,7 +11,7 @@ import time
 import git
 
 
-# Get inputs (Remove "repo" line if running from source code and you are not The Ice States)
+# Get inputs
 threadLink = input('Enter thread link: ')
 pageNo = int(input('Enter the amount of pages: '))
 tn = input('Enter shorthand version of thread name: ')
