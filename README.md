@@ -5,6 +5,6 @@ Maintained by CanineAnimal (The Ice States on NationStates).
 
 Archives prior to 2022 are obtained from "Project Langolier-Proofing" by Valentine Z.
 
-The build can be accessed [here](https://canineanimal.github.io/Quincentenary-Archive/pages/).
+The build can be accessed [here](https://canineanimal.github.io/Quincentenary-Archive/pages/index.html).
 
 Please note that this repository only contains source code. Archives are in the "QA-Archives" repository.
