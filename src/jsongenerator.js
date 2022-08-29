@@ -1,5 +1,5 @@
 // This should be ran on any HTML archive version of a page on a thread. Nb generated code should be appended to existing JSON archive prior to the closing } bracket.
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var months = [,'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var pages = eval(prompt('How many pages does this thread have?'));
 var parser = new DOMParser();
 var request = new XMLHttpRequest();
@@ -10,6 +10,13 @@ if(parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.
 	json.lock = false;
 }else{
 	json.lock = true;
+}
+function twoDigitify(num){
+	if(num.length == 1){
+		return '0' + num.toString();
+	}else{
+		return num.toString();
+	}
 }
 json.title = document.querySelector('#page-body h2 a').innerText;
 json.posts = [];
@@ -26,7 +33,7 @@ for(var item = 0; item < pages; item++){
 				posterID: posts[jtem].querySelectorAll('A')[1].attributes.href.value.split('=')[2],
 				posterName: posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML,
 				postID: posts[jtem].querySelector('.author').querySelector('a').href.split('#')[1],
-				timestamp: new Date(eval(rd[3]), months.indexOf(rd[1]), eval(rd[2].split(',')[0]), eval(rd[4].split(':')[0]), eval(rd[4].split(':')[1])),
+				timestamp: new Date(new Date(rd[3] + '-' + twoDigitify(months.indexOf(rd[1]).toString().length) + '-' + rd[2].split(',')[0] + 'T' + twoDigitify(rd[4].split(':')[0]) + ':' + twoDigitify(rd[4].split(':')[1]) + ':00.000-08:00');,
 				postHTML: posts[jtem].querySelector('.content').innerHTML
 			}
 		}
