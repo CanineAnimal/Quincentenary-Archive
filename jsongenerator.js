@@ -9,7 +9,9 @@ if(parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.
 }else{
 	json.lock = true;
 }
+json.title = document.querySelector('#page-body h2 a').innerText;
 json.posts = [];
+threadID = document.querySelectorAll('A')[12].attributes.href.value.split('=')[2]'
 for(var item = 0; item < pages; item++){
 	var request = new XMLHttpRequest();
 	request.open('GET', item + '.html', false);
@@ -29,4 +31,4 @@ for(var item = 0; item < pages; item++){
 	}
 }
 document.body.innerHTML = '<CODE></CODE>';
-document.querySelector('CODE').innerText = '"t' + parser.parseFromString(request.responseText, 'text/html').querySelectorAll('A')[12].attributes.href.value.split('=')[2] + '":' + JSON.stringify(json) + ',';
+document.querySelector('CODE').innerText = '"t' + threadID + '":' + JSON.stringify(json) + ',';
