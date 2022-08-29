@@ -1,4 +1,4 @@
-// This should be ran on any HTML page of a thread as archived.
+// This should be ran on any HTML archive version of a page on a thread. Nb generated code should be appended to existing JSON archive prior to the closing } bracket.
 var pages = eval(prompt('How many pages does this thread have?'));
 var parser = new DOMParser();
 var request = new XMLHttpRequest();
