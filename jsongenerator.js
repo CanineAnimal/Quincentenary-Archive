@@ -19,7 +19,7 @@ for(var item = 0; item < pages; item++){
 			json += '{posterID:"' + posts[jtem].querySelectorAll('A')[1].attributes.href.value.split('=')[2] + '",'
 			+ 'posterName:"' + posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML + '",'
 			+ 'timestamp:"' + posts[jtem].querySelector('.author').innerText.split('» ')[1] + '",'
-			+ 'postHTML:"' + posts[jtem].querySelector('.content').innerHTML + '"},';
+			+ 'postHTML:"' + posts[jtem].querySelector('.content').innerHTML.replaceAll('"','\"') + '"},';
 		}
 	}else{
 		json += ','
