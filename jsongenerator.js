@@ -3,7 +3,7 @@ var parser = new DOMParser();
 var request = new XMLHttpRequest();
 request.open('GET', '0.html', false);
 request.send();
-json = ',"t' + parser.parseFromString(request.responseText, 'text/html').querySelectorAll('A')[12].attributes.href.value.split('=')[2] + '":{lock:';
+json = '"t' + parser.parseFromString(request.responseText, 'text/html').querySelectorAll('A')[12].attributes.href.value.split('=')[2] + '":{lock:';
 if(parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.locked-icon').length == 0){
 	json += 'false,posts:['
 }else{
@@ -17,7 +17,7 @@ for(var item = 0; item < pages; item++){
 		posts = parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.post');
 		for(var jtem = 0; jtem < posts.length; jtem++){
 			json += '{posterID:"' + posts[jtem].querySelectorAll('A')[1].attributes.href.value.split('=')[2] + ','
-			+ 'posterName:"' + posts[jtem].querySelector('.author').querySelector('Strong').innerHTML + ','
+			+ 'posterName:"' + posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML + ','
 			+ 'timestamp:"' + posts[jtem].querySelector('.author').innerText.split('» ')[1] + ','
 			+ 'postHTML:"' + posts[jtem].querySelector('.content').innerHTML + '},';
 		}
@@ -25,5 +25,5 @@ for(var item = 0; item < pages; item++){
 		json += ','
 	}
 }
-json += ']}'
+json += ']},'
 console.log(json);
