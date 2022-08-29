@@ -19,7 +19,7 @@ BODY{
 A{
 	color: rgb(0,0,84);
 }
-BUTTON .LARGE{
+BUTTON.LARGE{
 	background: black;
 	color: white;
 	font-size: 16pt;
