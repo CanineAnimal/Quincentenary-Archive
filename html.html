@@ -46,18 +46,9 @@ IFRAME{
 			<BR/>
       		<H2>Archived threads</H2>
       		<BR/>
-      		"Favorite Thing in the AN's Sig (Thread the 7th)" (OP: Continental Free States; 500 Pages): Page <INPUT ID="FavSig7"/>: <BUTTON ONCLICK="accessArchive(0)">GO!</BUTTON>
+      		"Favorite Thing in the AN's Sig (Thread the 7th)" (OP: Continental Free States; 500 Pages): Page <INPUT ID="FavSig7"/>: <BUTTON ONCLICK="accessArchive(0,'.html')">GO!</BUTTON>
 		</DIV>
 		<DIV ID="IFRAME_SPACE"/>
 	</BODY>
-  <SCRIPT>
-function accessArchive(num){
-	document.querySelector('#IFRAME_SPACE').innerHTML = '<IFRAME SRC="https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + document.querySelectorAll('INPUT')[num].id + '/' + (eval(document.querySelectorAll('INPUT')[num].value) - 1) + '.html" TITLE="Archive" WIDTH="600px" HEIGHT="600px"/>';
-	document.querySelector('.LINKS').innerHTML = '<A HREF="https://canineanimal.github.io/Quincentenary-Archive/">Back</A> | <A HREF="#" ONCLICK="closeIframe()">Close archive</A>';
-}
-function closeIframe(){
-	document.querySelector('#IFRAME_SPACE').innerHTML = '';
-	document.querySelector('.LINKS').innerHTML = '<A HREF="https://canineanimal.github.io/Quincentenary-Archive/">Back</A>';
-}
-	</SCRIPT>
+	<SCRIPT SRC="load.js"/>
 </HTML>
