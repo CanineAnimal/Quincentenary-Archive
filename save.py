@@ -2,6 +2,7 @@
 # https://pypi.org/project/pdfkit/
 # https://wkhtmltopdf.org/
 # https://gitpython.readthedocs.io/en/stable/
+# Nb: this code is run in a clone of the QA-Archive repo.
 
 # Get modules
 import requests
