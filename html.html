@@ -41,10 +41,11 @@ A{
       		<BR/>
       		"Favorite Thing in the AN's Sig (Thread the 7th)" (OP: Continental Free States; 500 Pages): Page <INPUT ID="FavSig7"/>: <BUTTON ONCLICK="accessArchive(0)">GO!</BUTTON>
 		</DIV>
+		<DIV ID="IFRAME_SPACE"/>
 	</BODY>
   <SCRIPT>
 function accessArchive(num){
-	location.href = 'https://canineanimal.github.io/Quincentenary-Archive/' + document.querySelectorAll('INPUT')[num].id + '/' + (eval(document.querySelectorAll('INPUT')[num].value) - 1) + '.html';
+	document.querySelector('#IFRAME_SPACE').innerHTML = '<IFRAME SRC="https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + document.querySelectorAll('INPUT')[num].id + '/' + (eval(document.querySelectorAll('INPUT')[num].value) - 1) + '.html" TITLE="Archive"/>';
 }
 	</SCRIPT>
 </HTML>
