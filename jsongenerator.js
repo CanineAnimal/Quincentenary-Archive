@@ -11,7 +11,7 @@ if(parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.
 }
 json.title = document.querySelector('#page-body h2 a').innerText;
 json.posts = [];
-threadID = document.querySelectorAll('A')[12].attributes.href.value.split('=')[2]'
+threadID = document.querySelectorAll('A')[12].attributes.href.value.split('=')[2];
 for(var item = 0; item < pages; item++){
 	var request = new XMLHttpRequest();
 	request.open('GET', item + '.html', false);
