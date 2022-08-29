@@ -3,12 +3,14 @@ var parser = new DOMParser();
 var request = new XMLHttpRequest();
 request.open('GET', '0.html', false);
 request.send();
-json = '"t' + parser.parseFromString(request.responseText, 'text/html').querySelectorAll('A')[12].attributes.href.value.split('=')[2] + '":{lock:';
+json = {}
+json['t'] + parser.parseFromString(request.responseText, 'text/html').querySelectorAll('A')[12].attributes.href.value.split('=')[2] + '":{lock:';
 if(parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.locked-icon').length == 0){
-	json += 'false,posts:['
+	json.lock = false;
 }else{
-	json += 'true,posts:['
+	json.lock = true;
 }
+json.posts = [];
 for(var item = 0; item < pages; item++){
 	var request = new XMLHttpRequest();
 	request.open('GET', item + '.html', false);
@@ -16,14 +18,15 @@ for(var item = 0; item < pages; item++){
 	if(request.status == 200){
 		posts = parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.post');
 		for(var jtem = 0; jtem < posts.length; jtem++){
-			json += '{posterID:"' + posts[jtem].querySelectorAll('A')[1].attributes.href.value.split('=')[2] + '",'
-			+ 'posterName:"' + posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML + '",'
-			+ 'timestamp:"' + posts[jtem].querySelector('.author').innerText.split('» ')[1] + '",'
-			+ 'postHTML:"' + posts[jtem].querySelector('.content').innerHTML.replaceAll('"','\"') + '"},';
+			json.posts[json.posts.length] = {
+				posterID: posts[jtem].querySelectorAll('A')[1].attributes.href.value.split('=')[2],
+				posterName: posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML,
+				timestamp: posts[jtem].querySelector('.author').innerText.split('» ')[1] + '",',
+				postHTML: posts[jtem].querySelector('content').innerHTML
+			}
 		}
 	}else{
-		json += ','
+		json.posts[json.posts.length] = null;
 	}
 }
-json += ']},'
-console.log(json);
+console.log(JSON.stringify(json) + ',');
