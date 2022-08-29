@@ -26,7 +26,7 @@ for(var item = 0; item < pages; item++){
 				posterID: posts[jtem].querySelectorAll('A')[1].attributes.href.value.split('=')[2],
 				posterName: posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML,
 				postID: posts[jtem].querySelector('.author').querySelector('a').href.split('#')[1],
-				timestamp: new Date(eval(rd.split(rd[3])), months.indexOf(rd[1]), eval(rd[2]).split(',')[0], eval(rd[4]).split(':')[0], eval(rd[4]).split(':')[1])
+				timestamp: new Date(eval(rd[3]), months.indexOf(rd[1]), eval(rd[2].split(',')[0]), eval(rd[4].split(':')[0]), eval(rd[4].split(':')[1])),
 				postHTML: posts[jtem].querySelector('.content').innerHTML
 			}
 		}
