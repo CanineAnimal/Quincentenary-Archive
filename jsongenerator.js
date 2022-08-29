@@ -1,3 +1,4 @@
+// This should be ran on any HTML page of a thread as archived.
 var pages = eval(prompt('How many pages does this thread have?'));
 var parser = new DOMParser();
 var request = new XMLHttpRequest();
@@ -22,6 +23,7 @@ for(var item = 0; item < pages; item++){
 			json.posts[json.posts.length] = {
 				posterID: posts[jtem].querySelectorAll('A')[1].attributes.href.value.split('=')[2],
 				posterName: posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML,
+				postID: posts[jtem].querySelector('.author').querySelector('a').href.split('#')[1],
 				timestamp: posts[jtem].querySelector('.author').innerText.split('» ')[1],
 				postHTML: posts[jtem].querySelector('.content').innerHTML
 			}
@@ -30,5 +32,5 @@ for(var item = 0; item < pages; item++){
 		json.posts[json.posts.length] = null;
 	}
 }
-document.body.innerHTML = '<CODE></CODE>';
-document.querySelector('CODE').innerText = '"t' + threadID + '":' + JSON.stringify(json) + ',';
+document.body.innerHTML = '<TEXTAREA></TEXTAREA>';
+document.querySelector('TEXTAREA').innerText = '"t' + threadID + '":' + JSON.stringify(json) + ',';
