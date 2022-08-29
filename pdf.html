@@ -25,43 +25,31 @@ BODY{
 A{
 	color: rgb(0,0,84);
 }
+IFRAME{
+	position: absolute;
+	width:70%;
+	height:50%;
+	left:15%;
+	top:50%;
+}
 		</STYLE>
 	</HEAD>
 	<BODY>
 		<DIV ID="CONTENT">
 			<H1 ID="HEADER">The Quincentenary Archive - PDF Archive</H1>
 			<BR/>
-			<A HREF="https://canineanimal.github.io/Quincentenary-Archive/">Back</A>
+			<SPAN CLASS="LINKS"><A HREF="https://canineanimal.github.io/Quincentenary-Archive/">Back</A></SPAN>
 			<BR/>
 			<BR/>
 			<P>The PDF Archive saves each page of a thread in PDF format. No formatting is lost, as images and formatting are copied onto the PDF archive, and links will also function, though they may be dead or link to pages that no longer exist. However, spoilers will not function. Archives prior to 2022 are obtained from <A HREF="https://www.nationstates.net/page=dispatch/id=1543370">"Project Langolier-Proofing"</A> -- thank you to Valentine Z for making this happen.</P>
 			<BR/>
 			<BR/>
       		<H2>Archived threads</H2>
-		<BR/>
-		"What have you learnt after reading the AN's factbooks? II" (OP: Destructive Government Economic System; 490 pages): <BUTTON ONCLICK="accessLangArchive('https://drive.google.com/file/d/1pqxBKQm23WPKY3GvDygM0QLZRn841ZsA/view')">Access whole archive</BUTTON>
-		<BR/>
-		"YN's Punishment for the Above Crime Part III" (OP: Earth circa 2050; 500 pages): <BUTTON ONCLICK="accessLangArchive('https://drive.google.com/file/d/1gK1DoNArcDOqQPmbPJumequPwF7TqQZZ/view')">Access whole archive</BUTTON>			
       		<BR/>
-		"Your reaction to AN's news II" (OP: North German Realm; 496 pages): <BUTTON ONCLICK="accessLangArchive('https://drive.google.com/file/d/1A0ebEUQGzFGqiX1Sb5nXR-6RpJNGUQT5/view')">Access whole archive</BUTTON>
-      		<BR/>
-		"Using the AN's flag, how do they deal with traitors? II" (OP: Destructive Government Economic System; 501 pages): <BUTTON ONCLICK="accessLangArchive('https://drive.google.com/drive/folders/1NyZcppq8jpIQgLWtMKJGhtJsBnOAQwv2')">Access whole archive</BUTTON>
-      		<BR/>
-		"Is the following thing canon in BN?" (OP: New Wolvers; 500 pages): <BUTTON ONCLICK="accessLangArchive('https://drive.google.com/file/d/1hKDxqOGUPaFSIUTQ8i21wyb3FlsZZyOO/view')">Access whole archive</BUTTON>
-      		<BR/>
-		"Two ANs; which one has the better flag? V" (OP: -Astoria-; 503 pages): <BUTTON ONCLICK="accessLangArchive('https://drive.google.com/file/d/1A-EvTPyxBqXK_DxdVJMKbI1sLKla8M8R/view')">Access whole archive</BUTTON>
-      		<BR/>
-		"Favorite line from AN's Factbooks" (OP: Pan-Asiatic States; 500 pages): <BUTTON ONCLICK="accessLangArchive('https://drive.google.com/file/d/1jop64y_AeIr0MDiHwiRwHq1qJuInPNmf/view')">Access whole archive</BUTTON>
-		<BR/>
-      		"Favorite Thing in the AN's Sig (Thread the 7th)" (OP: Continental Free States; 500 Pages): Page <INPUT ID="FavSig7"/>: <BUTTON ONCLICK="accessArchive(0)">GO!</BUTTON>
+      		"Favorite Thing in the AN's Sig (Thread the 7th)" (OP: Continental Free States; 500 Pages): Page <INPUT ID="FavSig7"/>: <BUTTON ONCLICK="accessArchive(0,'.pdf')">GO!</BUTTON>
 		</DIV>
+		<DIV ID="IFRAME_SPACE"/>
 	</BODY>
-  <SCRIPT>
-function accessArchive(num){
-	location.href = 'https://canineanimal.github.io/Quincentenary-Archive/' + document.querySelectorAll('INPUT')[num].id + '/' + (eval(document.querySelectorAll('INPUT')[num].value) - 1) + '.pdf';
-}
-function accessLangArchive(link){
-	location.href = link;
-}
-	</SCRIPT>
+	<SCRIPT SRC="load.js"/>
 </HTML>
+
