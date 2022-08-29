@@ -1,5 +1,4 @@
-# Dependencies: ImgKit, PdfKit, WkHtml, GitPython
-# https://pypi.org/project/imgkit/
+# Dependencies: PdfKit, WkHtmlToPdf, GitPython
 # https://pypi.org/project/pdfkit/
 # https://wkhtmltopdf.org/
 # https://gitpython.readthedocs.io/en/stable/
@@ -7,7 +6,6 @@
 # Get modules
 import requests
 import github
-import imgkit
 import pdfkit
 import time
 import git
@@ -40,20 +38,6 @@ while item < pageNo:
 		origin = repo.remote(name='origin')
 		origin.push()
 		print('Uploaded page ' + str(item + 1) + ' in HTML!')
-		time.sleep(1)
-
-		# Save page PNG
-		print('Saving ' + str(item) + '.png...')
-		imgkit.from_url(page, str(item) + '.png', options={'custom-header':[('User-Agent','Script by The Ice States to save a Forum 7 thread.')]})
-		time.sleep(1)
-		print('Adding ' + str(item) + '.png...')
-		repo.index.add([folder + '/' + str(item) + '.png'])
-		print('Committing changes...')
-		repo.index.commit('Upload PNG Page')
-		print('Pushing changes...')
-		origin = repo.remote(name='origin')
-		origin.push()
-		print('Uploaded page ' + str(item + 1) + ' in PNG!')
 		time.sleep(1)
 
 		# Save page PDF
