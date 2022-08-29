@@ -53,7 +53,7 @@ IFRAME{
   <SCRIPT>
 function accessArchive(num){
 	document.querySelector('#IFRAME_SPACE').innerHTML = '<IFRAME SRC="https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + document.querySelectorAll('INPUT')[num].id + '/' + (eval(document.querySelectorAll('INPUT')[num].value) - 1) + '.html" TITLE="Archive" WIDTH="600px" HEIGHT="600px"/>';
-	document.querySelector('.LINKS').innerHTML = '  <A HREF="#" ONCLICK="closeIframe()">Close archive</A>';
+	document.querySelector('.LINKS').innerHTML += '  <A HREF="#" ONCLICK="closeIframe()">Close archive</A>';
 }
 function closeIframe(){
 	document.querySelector('#IFRAME_SPACE').innerHTML = '';
