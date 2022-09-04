@@ -28,7 +28,7 @@ while item < pageNo:
 		html = requests.get(page, headers={'User-Agent': 'Script by The Ice States to save a Forum 7 thread.'}).text.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
 		print('Saving ' + str(item ) + '.html...')
 		file = open(tn + '/' + str(item) + '.html', 'w')
-		file.write(html)
+		file.write(html, 'utf-8')
 		file.close()
 		time.sleep(1)
 		print('Adding ' + str(item) + '.html...')
