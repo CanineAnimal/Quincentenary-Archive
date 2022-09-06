@@ -1,5 +1,5 @@
 BODY{
-	background-image: url(https://canineanimal.github.io/Quincentenary-Archive/pages/background.jpg);
+	background-image: url("https://canineanimal.github.io/Quincentenary-Archive/pages/background.jpg");
 }
 *{
 	font-family: arial, sans-serif;
