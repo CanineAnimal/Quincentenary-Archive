@@ -7,7 +7,7 @@ function accessArchive(num, ext){
 	document.querySelector('.LINKS').innerHTML = '<A HREF="https://canineanimal.github.io/Quincentenary-Archive/pages/">Back</A> | <A HREF="#" ONCLICK="closeIframe()">Close archive</A>';
 }
 function accessLangolierArchive(code){
-	document.querySelector('#IFRAME_SPACE').innerHTML = '<IFRAME SRC="https://drive.google.com/file/d/' + code + '/view" TITLE="Archive" WIDTH="600px" HEIGHT="600px"/>'
+	document.querySelector('#IFRAME_SPACE').innerHTML = '<IFRAME SRC="https://drive.google.com/file/d/' + code + '/preview" TITLE="Archive" WIDTH="600px" HEIGHT="600px" ALLOW="autoplay"/>'
 	document.querySelector('.LINKS').innerHTML = '<A HREF="https://canineanimal.github.io/Quincentenary-Archive/pages/">Back</A> | <A HREF="#" ONCLICK="closeIframe()">Close archive</A>';
 }
 function closeIframe(){
