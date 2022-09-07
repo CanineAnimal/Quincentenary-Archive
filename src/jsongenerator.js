@@ -5,6 +5,7 @@ var request = new XMLHttpRequest();
 request.open('GET', '0.html', false);
 request.send();
 json = {}
+json.shorthand = prompt('What is this thread\'s shorthand?');
 if(parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.locked-icon').length == 0){
 	json.lock = false;
 }else{
