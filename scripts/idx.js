@@ -15,7 +15,7 @@ function searchLink(){
 		var request = new XMLHttpRequest();
 		request.open('GET', 'https://canineanimal.github.io/Quincentenary-Archive/pages/quincentenaryarchive.json', false);
 		request.send();
-		var json = eval(request.responseText);
+		var json = JSON.parse(request.responseText);
 		var jsonArray = Object.values(json);
 		
 		if(link.indexOf('t=') != -1){
@@ -43,7 +43,7 @@ function searchLink(){
 		if(window.thread == undefined){
 			alert('Thread not found. Either your link is incorrect, or the link you entered is from a thread not saved in the HTML Archive')
 		}else{
-			if(window.postID=undefined){
+			if(window.postID == undefined){
 				location.href = 'https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + thread + '.html'
 			}else{
 				location.href = 'https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + thread + '.html#p' + postID
