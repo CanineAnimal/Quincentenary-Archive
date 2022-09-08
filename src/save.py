@@ -30,7 +30,7 @@ while item < pageNo:
 		file = open(tn + '/' + str(item) + '.html', 'w', encoding='utf-8')
 		file.write(html)
 		file.close()
-		time.sleep(1)
+		time.sleep(3)
 		print('Adding ' + str(item) + '.html...')
 		repo.index.add([tn + '/' + str(item) + '.html'])
 		print('Committing changes...')
@@ -39,12 +39,12 @@ while item < pageNo:
 		origin = repo.remote(name='origin')
 		origin.push()
 		print('Uploaded page ' + str(item + 1) + ' in HTML!')
-		time.sleep(1)
+		time.sleep(3)
 
 		# Save page PDF
 		print('Saving ' + str(item) + '.pdf...')
 		pdfkit.from_url(page, tn + '/' + str(item) + '.pdf', options={'custom-header':[('User-Agent','Script by The Ice States to save a Forum 7 thread.')]})
-		time.sleep(1)
+		time.sleep(3)
 		print('Adding ' + str(item) + '.pdf...')
 		repo.index.add([tn + '/' + str(item) + '.pdf'])
 		print('Committing changes...')
@@ -53,7 +53,7 @@ while item < pageNo:
 		origin = repo.remote(name='origin')
 		origin.push()
 		print('Completed!')
-		time.sleep(1)
+		time.sleep(3)
 		print('Uploaded page ' + str(item + 1) + ' in PDF!')
 		item += 1
 	except:
