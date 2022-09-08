@@ -25,12 +25,13 @@ while item < pageNo:
 		# Save page HTML
 		print('Fetching ' + str(item ) + '.html...')
 		page = threadLink + '&start=' + str(item * 25)
+		originalTime = time.time()
 		html = requests.get(page, headers={'User-Agent': 'Script by The Ice States to save a Forum 7 thread.'}).text.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
 		print('Saving ' + str(item ) + '.html...')
 		file = open(tn + '/' + str(item) + '.html', 'w', encoding='utf-8')
 		file.write(html)
 		file.close()
-		time.sleep(3)
+		time.sleep(1)
 		print('Adding ' + str(item) + '.html...')
 		repo.index.add([tn + '/' + str(item) + '.html'])
 		print('Committing changes...')
@@ -39,12 +40,14 @@ while item < pageNo:
 		origin = repo.remote(name='origin')
 		origin.push()
 		print('Uploaded page ' + str(item + 1) + ' in HTML!')
-		time.sleep(3)
+		if time.time() < originalTime + 6:
+			time.sleep(originalTime + 6 - time.time())
 
 		# Save page PDF
 		print('Saving ' + str(item) + '.pdf...')
+		originalTime = time.time()
 		pdfkit.from_url(page, tn + '/' + str(item) + '.pdf', options={'custom-header':[('User-Agent','Script by The Ice States to save a Forum 7 thread.')]})
-		time.sleep(3)
+		time.sleep(1)
 		print('Adding ' + str(item) + '.pdf...')
 		repo.index.add([tn + '/' + str(item) + '.pdf'])
 		print('Committing changes...')
@@ -52,9 +55,9 @@ while item < pageNo:
 		print('Pushing changes...')
 		origin = repo.remote(name='origin')
 		origin.push()
-		print('Completed!')
-		time.sleep(3)
 		print('Uploaded page ' + str(item + 1) + ' in PDF!')
+		if time.time() < originalTime + 6:
+			time.sleep(originalTime + 6 - time.time())
 		item += 1
 	except:
 		print('Unable to save page ' + str(item))
