@@ -50,7 +50,7 @@ function searchLink(){
 			if(window.page == undefined){
 				location.href = 'https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + thread + '/0.html';
 			}else if(window.postID == undefined){
-				location.href = 'https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + thread + '/0.html';
+				location.href = 'https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + thread + '/' + page + '.html';
 			}else{
 				location.href = 'https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + thread + '/' + page + '.html#p' + postID;
 			}
