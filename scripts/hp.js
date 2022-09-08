@@ -42,7 +42,7 @@ function searchLink(){
 			}
 		}
 		if(link.indexOf('start=') != -1){
-			page = Math.floor(eval(link.split('start=')[1].split('&')[0]));
+			page = Math.floor(eval(link.split('start=')[1].split('&')[0])/25);
 		}
 		if(window.thread == undefined){
 			alert('Thread not found. Either your link is incorrect, or the link you entered is from a thread not saved in the HTML Archive.');
