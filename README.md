@@ -7,4 +7,4 @@ Archives prior to October 2022 may be woefully incomplete, and are obtained from
 
 The build can be accessed [here](https://canineanimal.github.io/Quincentenary-Archive/pages/).
 
-Please note that this repository only contains source code. Archives are in the "QA-Archives" repository.
+Please note that this repository only contains source code. Archives are in the "QA-Archives" repository. Archives prior to mid-2022 may be woefully incomplete.
