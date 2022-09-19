@@ -6,7 +6,6 @@
 
 # Get modules
 import requests
-import github
 import pdfkit
 import time
 import git
