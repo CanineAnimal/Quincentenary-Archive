@@ -29,16 +29,17 @@ while item < pageNo:
 		file.write(html)
 		file.close()
 		print('Saved page ' + str(item + 1) + ' in HTML!')
-		if time.time() < originalTime + 6:
-			time.sleep(originalTime + 6 - time.time())
 
 		# Save page PDF
 		print('Saving ' + str(item) + '.pdf...')
 		originalTime = time.time()
 		pdfkit.from_url(page, tn + '/' + str(item) + '.pdf', options={'custom-header':[('User-Agent','Script by The Ice States to save a Forum 7 thread.')]})
 		print('Saved page ' + str(item + 1) + ' in PDF!')
+		
+		# Wait to avoid violating NS rate limits
 		if time.time() < originalTime + 6:
 			time.sleep(originalTime + 6 - time.time())
+		
 		item += 1
 	except:
 		print('Unable to save page ' + str(item + 1) + '.')
