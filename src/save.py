@@ -22,27 +22,27 @@ while item < pageNo:
 		# Save page HTML
 		print('Fetching ' + str(item ) + '.html...')
 		page = threadLink + '&start=' + str(item * 25)
-		originalTime = time.time()
 		html = requests.get(page, headers={'User-Agent': 'Script by The Ice States to save a Forum 7 thread.'}).text.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
-		print('Saving ' + str(item ) + '.html...')
+		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Saving ' + str(item ) + '.html...')
+		originalTime = time.time()
 		file = open(tn + '/' + str(item) + '.html', 'w', encoding='utf-8')
 		file.write(html)
 		file.close()
-		print('Saved page ' + str(item + 1) + ' in HTML!')
+		print('Saved page ' + str(item + 1) + ' in HTML! Saving ' + str(item) + '.pdf...')
 
 		# Wait to avoid violating NS rate limits
-		if time.time() < originalTime + 6:
-			time.sleep(originalTime + 6 - time.time())
+		if time.time() < originalTime + 8:
+			time.sleep(originalTime + 8 - time.time())
 		
 		# Save page PDF
-		print('Saving ' + str(item) + '.pdf...')
-		originalTime = time.time()
 		pdfkit.from_url(page, tn + '/' + str(item) + '.pdf', options={'custom-header':[('User-Agent','Script by The Ice States to save a Forum 7 thread.')]})
+		print('Delay since last request: ' + str(time.time() - originalTime) + ' s')
+		originalTime = time.time()
 		print('Saved page ' + str(item + 1) + ' in PDF!')
 		
 		# Second rate limit wait
-		if time.time() < originalTime + 6:
-			time.sleep(originalTime + 6 - time.time())
+		if time.time() < originalTime + 8:
+			time.sleep(originalTime + 8 - time.time())
 		
 		item += 1
 	except:
