@@ -36,7 +36,7 @@ while item < pageNo:
 		
 		# Save page PDF
 		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Saving ' + str(item) + '.pdf...')
-		pdfkit.from_url(page, tn + '/' + str(item) + '.pdf', options={'custom-header':[('User-Agent','Script by The Ice States to save a Forum 7 thread.')]}
+		pdfkit.from_url(page, tn + '/' + str(item) + '.pdf', options={'custom-header':[('User-Agent','Script by The Ice States to save a Forum 7 thread.')]})
 		originalTime = time.time()
 		print('Saved page ' + str(item + 1) + ' in PDF!')
 		
