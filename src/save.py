@@ -28,7 +28,7 @@ while item < pageNo:
 		file = open(tn + '/' + str(item) + '.html', 'w', encoding='utf-8')
 		file.write(html)
 		file.close()
-		print('Saved page ' + str(item + 1) + ' in HTML!)
+		print('Saved page ' + str(item + 1) + ' in HTML!')
 
 		# Wait to avoid violating NS rate limits
 		if time.time() < originalTime + 8:
