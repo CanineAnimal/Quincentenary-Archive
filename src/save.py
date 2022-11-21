@@ -33,7 +33,7 @@ while item < pageNo:
 		# Save page PDF
 		print('Saving ' + str(item) + '.pdf...')
 		originalTime = time.time()
-		pdfkit.from_url(page, tn + '/' + str(item) + '.pdf', options={'custom-header':[('User-Agent','Script by The Ice States to save a Forum 7 thread.')]})
+		pdfkit.from_file(tn + '/' + str(item) + '.html', tn + '/' + str(item) + '.pdf')
 		print('Saved page ' + str(item + 1) + ' in PDF!')
 		
 		# Wait to avoid violating NS rate limits
