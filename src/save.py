@@ -17,6 +17,7 @@ tn = input('Enter shorthand version of thread name: ')
 
 # Loop through thread
 item = 0
+originalTime = time.time()
 while item < pageNo:
 	try:
 		# Save page HTML
