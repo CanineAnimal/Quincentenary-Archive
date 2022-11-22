@@ -32,8 +32,8 @@ while item < pageNo:
 		print('Saved page ' + str(item + 1) + ' in HTML!')
 
 		# Wait to avoid violating NS rate limits
-		if time.time() < originalTime + 8:
-			time.sleep(originalTime + 8 - time.time())
+		if time.time() < originalTime + 20:
+			time.sleep(originalTime + 20 - time.time())
 		
 		# Save page PDF
 		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Saving ' + str(item) + '.pdf...')
@@ -42,8 +42,8 @@ while item < pageNo:
 		print('Saved page ' + str(item + 1) + ' in PDF!')
 		
 		# Second rate limit wait
-		if time.time() < originalTime + 8:
-			time.sleep(originalTime + 8 - time.time())
+		if time.time() < originalTime + 20:
+			time.sleep(originalTime + 20 - time.time())
 		
 		item += 1
 	except:
