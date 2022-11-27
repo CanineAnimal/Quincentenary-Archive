@@ -24,8 +24,7 @@ for(var item = 0; item < pages; item++){
 			json.posts[json.posts.length] = {
 				posterID: posts[jtem].querySelectorAll('A')[1].attributes.href.value.split('=')[2],
 				posterName: posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML,
-				postID: posts[jtem].querySelector('.author').querySelector('a').href.split('#')[1],
-				postHTML: posts[jtem].querySelector('.content').innerHTML
+				postID: posts[jtem].querySelector('.author').querySelector('a').href.split('#')[1]
 			}
 		}
 	}else{
