@@ -8,12 +8,19 @@
 import requests
 import pdfkit
 import time
-
+import os
 
 # Get inputs
 threadLink = input('Enter thread link: ')
 pageNo = int(input('Enter the amount of pages: '))
 tn = input('Enter shorthand version of thread name: ')
+
+# Check whether the specified path exists or not
+tnExists = os.path.exists('./' + tn)
+
+# Create a new directory because it does not exist
+if not tnExists:
+    os.makedirs('./' + tn)
 
 # Loop through thread
 item = 0
@@ -21,7 +28,7 @@ originalTime = time.time()
 while item < pageNo:
 	try:
 		# Save page HTML
-		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching ' + str(item ) + '.html...')
+		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching ' + str(item) + '.html...')
 		page = threadLink + '&start=' + str(item * 25)
 		html = requests.get(page, headers={'User-Agent': 'Script by The Ice States to save a Forum 7 thread.'}).text.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
 		print('Saving ' + str(item ) + '.html...')
