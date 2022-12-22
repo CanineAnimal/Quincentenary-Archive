@@ -8,3 +8,5 @@ Archives prior to August 2022 are obtained from ["Project Langolier-Proofing"](h
 The build can be accessed [here](https://canineanimal.github.io/Quincentenary-Archive/pages/).
 
 Please note that this repository only contains source code. Archives are in the "QA-Archives" repository. Archives prior to mid-2022 may be woefully incomplete.
+
+In addition, while threads will, of course, be archived within seven days, the archives are uploaded to QA-Archives whenever I feel like it.
