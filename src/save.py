@@ -15,11 +15,8 @@ threadLink = input('Enter thread link: ')
 pageNo = int(input('Enter the amount of pages: '))
 tn = input('Enter shorthand version of thread name: ')
 
-# Check whether the specified path exists or not
-tnExists = os.path.exists('./' + tn)
-
-# Create a new directory because it does not exist
-if not tnExists:
+# Create a new directory because the specified path does not exist
+if not os.path.exists('./' + tn):
     os.makedirs('./' + tn)
 
 # Loop through thread
