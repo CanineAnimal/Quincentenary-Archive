@@ -6,11 +6,7 @@ request.open('GET', '0.html', false);
 request.send();
 json = {}
 json.shorthand = prompt('What is this thread\'s shorthand?');
-if(parser.parseFromString(request.responseText, 'text/html').querySelectorAll('.locked-icon').length == 0){
-	json.lock = false;
-}else{
-	json.lock = true;
-}
+json.lock = true;
 json.title = document.querySelector('#page-body h2 a').innerText;
 json.posts = [];
 threadID = document.querySelectorAll('A')[12].attributes.href.value.split('=')[2];
@@ -26,6 +22,9 @@ for(var item = 0; item < pages; item++){
 				posterName: posts[jtem].querySelector('.author').querySelector('Strong a').innerHTML,
 				postID: posts[jtem].querySelector('.author').querySelector('a').href.split('#')[1]
 			}
+		}
+		if(item == pages - 1){
+			json.lock = false;
 		}
 	}else{
 		json.posts[json.posts.length] = null;
