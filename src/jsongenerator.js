@@ -23,7 +23,7 @@ for(var item = 0; item < pages; item++){
 				postID: posts[jtem].querySelector('.author').querySelector('a').href.split('#')[1]
 			}
 		}
-		if(item == pages - 1){
+		if((item == pages - 1) && document.querySelector('.locked-icon') == null){
 			json.lock = false;
 		}
 	}else{
