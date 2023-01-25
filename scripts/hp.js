@@ -8,6 +8,12 @@ document.querySelector('#JSON_LINK').onclick = function(){
 	location.href = 'https://canineanimal.github.io/Quincentenary-Archive/pages/quincentenaryarchive.json';
 }
 function searchLink(){
+	var json;
+	var jsonArray;
+	var threadID;
+	var thread;
+	var postID;
+	var page;
 	var link = document.querySelector('#LINK_SEARCH').value;
 	if(link.indexOf('forum.nationstates.net') == -1){
 		alert('URL not to "forum.nationstates.net". Please try again.');
@@ -16,8 +22,8 @@ function searchLink(){
 			var request = new XMLHttpRequest();
 			request.open('GET', 'https://canineanimal.github.io/Quincentenary-Archive/pages/quincentenaryarchive.json', false);
 			request.send();
-			var json = JSON.parse(request.responseText);
-			var jsonArray = Object.values(json);
+			json = JSON.parse(request.responseText);
+			jsonArray = Object.values(json);
 
 			if(link.indexOf('t=') != -1){
 				threadID = 't' + link.split('t=')[1].split('&')[0];
