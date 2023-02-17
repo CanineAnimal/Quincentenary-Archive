@@ -1,0 +1,7 @@
+The following requirements are needed to be able to run the source code (in /src).
+
+Python modules,
+-requests, ~2.28
+-pdfkit, ~1.0
+
+wkhtmltopdf, ~0.12. https://wkhtmltopdf.org/index.html
