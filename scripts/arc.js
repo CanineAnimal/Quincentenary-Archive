@@ -3,7 +3,7 @@ console.log('%cInputting code into here may break the site, or possibly hack you
 function accessArchive(ext){
 	var num;
 	for(var item = 0; item < document.querySelectorAll('BUTTON').length; item++){
-		if(document.querySelectorAll('BUTTON')[num] == event.target){
+		if(document.querySelectorAll('BUTTON')[item] == event.target){
 			num = item;
 			break;
 		}
