@@ -1,4 +1,7 @@
-function accessArchive(num, ext){
+console.log('%cWARNING', 'color:red; font-size:100px');
+console.log('%cInputting code into here may break the site, or possibly hack your computer! This feature is intended only for developers -- do NOT copy paste text here if you are not certain what you are doing.', 'font-size: 20px');
+function accessArchive(ext){
+	var num = document.querySelectorAll('BUTTON').indexOf(event.target);
 	if(ext == '.html'){
 		document.querySelector('#IFRAME_SPACE').innerHTML = '<IFRAME SRC="https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + document.querySelectorAll('INPUT')[num].id + '/' + (eval(document.querySelectorAll('INPUT')[num].value) - 1) + ext + '" TITLE="Archive" WIDTH="600px" HEIGHT="600px"/>';
 	}else if(ext == '.pdf'){
