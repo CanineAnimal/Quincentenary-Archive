@@ -15,31 +15,31 @@ BODY{
 	bottom: 0%;
 	background-color: rgb(98, 140, 172);
 	padding: 3%;
+	overflow:scroll;
 }
 #HTMLA{
 	background-color: rgb(255, 0, 0);
 	height:325px;
 	padding: 0.5%;
-}
-#HTMLA{
-	background-color: rgb(255, 0, 0);
-	height:325px;
-	padding: 0.5%;
+	overflow:scroll;
 }
 #LINKA{
 	background-color: rgb(0, 255, 0);
 	height:325px;
 	padding: 0.5%;
+	overflow:scroll;
 }
 #PDFA{
 	background-color: rgb(80, 200, 255);
 	height:325px;
-	padding: 0.5%
+	padding: 0.5%;
+	overflow:scroll;
 }
 #JSONA{
 	background-color: rgb(255, 255, 0);
 	height:325px;
-	padding: 0.5%
+	padding: 0.5%;
+	overflow:scroll;
 }
 A{
 	color: rgb(0, 0, 84);
