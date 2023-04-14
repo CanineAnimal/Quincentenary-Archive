@@ -7,14 +7,13 @@ var threads = 0;
 
 var request = new XMLHttpRequest();
 request.open('GET', 'https://canineanimal.github.io/Quincentenary-Archive/pages/quincentenaryarchive.json', false);
-request.send();
-
+try{request.send()}catch(e){};
 if(200 <= request.status && request.status <= 299){
 	threads = Object.values(JSON.parse(request.responseText));
 }else{
 	var request = new XMLHttpRequest();
 	request.open('GET', 'https://canineanimal.github.io/Quincentenary-Archive/pages/quincentenaryarchive.json', false);
-	request.send();
+	try{request.send()}catch(e){};
 	if(200 <= request.status && request.status <= 299){
 		threads = Object.values(JSON.parse(request.responseText));
 	}else{
