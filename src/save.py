@@ -25,8 +25,8 @@ if not os.path.exists('./' + tn):
 
 # Loop through thread
 tries = 0
-item = 0
-originalTime = time.time()
+item = 412
+originalTime = time.time();
 while item < pageNo:
 	try:	
 		# Fetch page HTML
@@ -58,7 +58,6 @@ while item < pageNo:
 		# Save page PDF
 		print('Saving ' + str(item) + '.pdf...')
 		pdfkit.from_string(html.decode('utf-8'), tn + '/' + str(item) + '.pdf', {'enable-local-file-access': ''})
-		originalTime = time.time()
 		print('Saved page ' + str(item + 1) + ' in PDF!')
 		
 		# Wait to avoid violating NS rate limits
@@ -76,3 +75,6 @@ while item < pageNo:
 			print('Unable to save page ' + str(item + 1) + '.')
 		else:
 			print('Unable to save page ' + str(item + 1) + '. Trying again...')
+			# Space consecutive attempts
+			if time.time() < originalTime + 20:
+				time.sleep(originalTime + 20 - time.time())
