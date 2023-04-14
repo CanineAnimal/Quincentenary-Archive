@@ -69,3 +69,6 @@ IFRAME{
 	visibility: hidden;
 	font-size: 0px; /* To avoid changing location of headings etc*/
 }
+.WARNING{
+	color: rgb(230, 50, 50);
+}
