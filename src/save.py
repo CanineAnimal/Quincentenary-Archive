@@ -76,4 +76,4 @@ while item < pageNo:
 		else:
 			print('Unable to save page ' + str(item + 1) + '. Trying again...')
 			# Space consecutive attempts
-			time.sleep(10)
+			time.sleep(15)
