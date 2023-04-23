@@ -69,11 +69,11 @@ while item < pageNo:
 	except:
 		# Move on to next page after three attempts at the same page
 		tries += 1
-		if(tries == 3):
+		if tries == 3:
 			item += 1
 			tries = 0
 			print('Unable to save page ' + str(item + 1) + '.')
-		else if (tries == 6):
+		elif tries == 6:
 			# After six consecutive failures raise error
 			raise
 		else:
