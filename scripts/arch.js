@@ -21,6 +21,7 @@ if(200 <= request.status && request.status <= 299){
 	}
 }
 if(threads !== 0){
+	document.querySelector('.THREADS').innerHTML = '';
 	for(var item = 0; item < threads.length; item++){
 		document.querySelector('.THREADS').innerHTML += '<BR/>"' + threads[item].title + '" (OP: ' + threads[item].posts[0].posterName + '; ' + Math.ceil(threads[item].posts.length/25) + ' pages): Page <INPUT ID="' + threads[item].shorthand + '"/>: <BUTTON ONCLICK="accessArchive()">GO!</BUTTON>';
 	}
