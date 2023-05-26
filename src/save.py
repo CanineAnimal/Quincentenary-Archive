@@ -25,10 +25,14 @@ if not os.path.exists('./' + tn):
 
 # Loop through thread
 tries = 0
-item = 412
-originalTime = time.time();
+item = 0
+originalTime = time.time() - 20;
 while item < pageNo:
 	try:	
+		# Wait to avoid violating NS rate limits
+		if time.time() < originalTime + 20:
+			time.sleep(originalTime + 20 - time.time())
+		
 		# Fetch page HTML
 		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching ' + str(item) + '.html...')
 		page = threadLink + '&start=' + str(item * 25)
@@ -57,12 +61,9 @@ while item < pageNo:
 		
 		# Save page PDF
 		print('Saving ' + str(item) + '.pdf...')
-		pdfkit.from_string(html.decode('utf-8'), tn + '/' + str(item) + '.pdf', {'enable-local-file-access': ''})
+		c = pdfkit.configuration(wkhtmltopdf = 'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
+		pdfkit.from_string(html.decode('utf-8'), tn + '/' + str(item) + '.pdf', {'enable-local-file-access': ''}, configuration=c)
 		print('Saved page ' + str(item + 1) + ' in PDF!')
-		
-		# Wait to avoid violating NS rate limits
-		if time.time() < originalTime + 20:
-			time.sleep(originalTime + 20 - time.time())
 		
 		tries = 0
 		item += 1
@@ -71,12 +72,11 @@ while item < pageNo:
 		tries += 1
 		if tries == 3:
 			item += 1
-			tries = 0
 			print('Unable to save page ' + str(item + 1) + '.')
-		elif tries == 6:
-			# After six consecutive failures raise error
+		elif tries == 5:
+			# After five consecutive failures raise error
 			raise
 		else:
 			print('Unable to save page ' + str(item + 1) + '. Trying again...')
-			# Space consecutive attempts
-			time.sleep(15)
+		# Space consecutive attempts
+		time.sleep(20)
