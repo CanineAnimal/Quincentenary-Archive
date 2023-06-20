@@ -40,7 +40,7 @@ if(200 <= request.status && request.status <= 299){
 if(threads !== 0){
 	document.querySelector('.THREADS').innerHTML = '';
 	for(var item = 0; item < threads.length; item++){
-		document.querySelector('.THREADS').innerHTML += '<THD-TG><SPAN SLOT="THREAD_NAME">' + threads[item].title + '</SPAN><SPAN SLOT="OP">' + threads[item].posts[0].posterName + '</SPAN><SPAN SLOT="PAGES">' + Math.ceil(threads[item].posts.length/25) + '</SPAN></THD-TG><INPUT ID="' + threads[item].shorthand + '"/><BUT-TG/>';
+		document.querySelector('.THREADS').innerHTML += '<THD-TG><SPAN SLOT="THREAD_NAME">' + threads[item].title + '</SPAN><SPAN SLOT="OP">' + threads[item].posts[0].posterName + '</SPAN><SPAN SLOT="PAGES">' + Math.ceil(threads[item].posts.length/25) + '</SPAN></THD-TG><INPUT ID="' + threads[item].shorthand + '"/>: <BUTTON ONCLICK="accessArchive()">GO!</BUTTON>';
 	}
 }
 
