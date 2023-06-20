@@ -3,18 +3,20 @@ console.log('%cWARNING', 'color:red; font-size:100px');
 console.log('%cInputting code into here may break the site, or possibly hack your computer! This feature is intended only for developers -- do NOT copy paste text here if you are not certain what you are doing.', 'font-size: 20px');
 
 // Define Web Components
-customElements.define('THREAD', class extends HTMLElement{
+customElements.define('thd-tg' /* Stupid hyphen requirement */, class extends HTMLElement{
 	constructor(){
 		super();
 		var tmpt = document.querySelector('#THREAD').content;
-		this.attachShadow({mode: 'open'}).appendChild(tmpt.cloneNode(true));
+		var sRoot = this.attachShadow({mode: 'open'});
+		sRoot.appendChild(tmpt.cloneNode(true));
 	}
 });
-customElements.define('BUT', class extends HTMLElement{
+customElements.define('but-tg', class extends HTMLElement{
 	constructor(){
 		super();
 		var tmpt2 = document.querySelector('#BUT').content;
-		this.attachShadow({mode: 'open'}).appendChild(tmpt2.cloneNode(true));
+		var sRoot2 = this.attachShadow({mode: 'open'});
+		sRoot2.appendChild(tmpt2.cloneNode(true));
 	}
 })
 
@@ -38,7 +40,7 @@ if(200 <= request.status && request.status <= 299){
 if(threads !== 0){
 	document.querySelector('.THREADS').innerHTML = '';
 	for(var item = 0; item < threads.length; item++){
-		document.querySelector('.THREADS').innerHTML += '<THREAD><SPAN SLOT="THREADNAME">' + threads[item].title + '</SPAN><SPAN SLOT="OP">' + threads[item].posts[0].posterName + '</SPAN><SPAN SLOT="PAGES">' + Math.ceil(threads[item].posts.length/25) + '</SPAN></THREAD><INPUT ID="' + threads[item].shorthand + '"/><BUT/>';
+		document.querySelector('.THREADS').innerHTML += '<THD-TG><SPAN SLOT="THREAD_NAME">' + threads[item].title + '</SPAN><SPAN SLOT="OP">' + threads[item].posts[0].posterName + '</SPAN><SPAN SLOT="PAGES">' + Math.ceil(threads[item].posts.length/25) + '</SPAN></THD-TG><INPUT ID="' + threads[item].shorthand + '"/><BUT-TG/>';
 	}
 }
 
