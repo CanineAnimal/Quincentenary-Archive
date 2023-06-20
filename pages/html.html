@@ -19,6 +19,14 @@
 			<SPAN CLASS="THREADS"><BR/>Loading threads...</SPAN>
 		</DIV>
 		<DIV ID="IFRAME_SPACE"/>
+		<TEMPLATE ID="THREAD">
+			<BR/>
+			<SLOT CLASS="THREAD_NAME"></SLOT>
+			(OP: <SLOT CLASS="OP"/>; <SLOT CLASS="PAGES"/> pages): Page 
+		</TEMPLATE>
+		<TEMPLATE ID="BUT">
+			: <BUTTON ONCLICK="accessArchive()">GO!</BUTTON>
+		</TEMPLATE>
 	</BODY>
 	<SCRIPT SRC="https://canineanimal.github.io/Quincentenary-Archive/scripts/arch.js"></SCRIPT>
 	<SCRIPT SRC="https://canineanimal.github.io/Quincentenary-Archive/scripts/htma.js"></SCRIPT>
