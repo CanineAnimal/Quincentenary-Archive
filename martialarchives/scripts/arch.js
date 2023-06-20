@@ -37,7 +37,7 @@ if(200 <= request.status && request.status <= 299){
 if(threads !== 0){
 	document.querySelector('.THREADS').innerHTML = '';
 	for(var item = 0; item < threads.length; item++){
-		document.querySelector('.THREADS').innerHTML += '<THREAD><SPAN SLOT="THREADNAME">' + threads[item].title + '</SPAN><SPAN SLOT="OP">' + threads[item].posts[0].posterName + '</SPAN><SPAN SLOT="PAGES">' + Math.ceil(threads[item].posts.length/25) + '</SPAN></THREAD><INPUT ID="' + threads[item].shorthand + '"/><BUT></BUT>';
+		document.querySelector('.THREADS').innerHTML += '<THREAD><SPAN SLOT="THREADNAME">' + threads[item].title + '</SPAN><SPAN SLOT="OP">' + threads[item].posts[0].posterName + '</SPAN><SPAN SLOT="PAGES">' + Math.ceil(threads[item].posts.length/25) + '</SPAN></THREAD><INPUT ID="' + threads[item].shorthand + '"/><BUT/>';
 	}
 }
 
