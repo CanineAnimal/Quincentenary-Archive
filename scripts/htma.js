@@ -1,7 +1,7 @@
 function accessArchive(){
 	var num;
-	for(var item = 0; item < document.querySelectorAll('BUTTON').length; item++){
-		if(document.querySelectorAll('BUTTON')[item] == event.target){
+	for(var item = 0; item < document.querySelectorAll('BUT-TG').length; item++){
+		if(document.querySelectorAll('BUT-TG')[item] == event.target){
 			num = item;
 			break;
 		}
