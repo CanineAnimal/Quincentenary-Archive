@@ -11,14 +11,6 @@ customElements.define('thd-tg' /* Stupid hyphen requirement */, class extends HT
 		sRoot.appendChild(tmpt.cloneNode(true));
 	}
 });
-customElements.define('but-tg', class extends HTMLElement{
-	constructor(){
-		super();
-		var tmpt2 = document.querySelector('#BUT').content;
-		var sRoot2 = this.attachShadow({mode: 'open'});
-		sRoot2.appendChild(tmpt2.cloneNode(true));
-	}
-})
 
 // Add all archives to .ΤΗREADS
 var threads = 0;
@@ -40,7 +32,7 @@ if(200 <= request.status && request.status <= 299){
 if(threads !== 0){
 	document.querySelector('.THREADS').innerHTML = '';
 	for(var item = 0; item < threads.length; item++){
-		document.querySelector('.THREADS').innerHTML += '<THD-TG><SPAN SLOT="THREAD_NAME">' + threads[item].title + '</SPAN><SPAN SLOT="OP">' + threads[item].posts[0].posterName + '</SPAN><SPAN SLOT="PAGES">' + Math.ceil(threads[item].posts.length/25) + '</SPAN></THD-TG><INPUT ID="' + threads[item].shorthand + '"/><BUT-TG/>';
+		document.querySelector('.THREADS').innerHTML += '<THD-TG><SPAN SLOT="THREAD_NAME">' + threads[item].title + '</SPAN><SPAN SLOT="OP">' + threads[item].posts[0].posterName + '</SPAN><SPAN SLOT="PAGES">' + Math.ceil(threads[item].posts.length/25) + '</SPAN></THD-TG><INPUT ID="' + threads[item].shorthand + '"/>: <BUTTON ONCLICK="accessArchive()">GO!</BUTTON>';
 	}
 }
 
