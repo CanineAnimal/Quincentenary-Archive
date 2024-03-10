@@ -14,9 +14,20 @@ import pdfkit
 import time
 import os
 
+def getPageNo(threadLink):
+	page = threadLink
+	html = requests.get(page, headers={'User-Agent': userAgent}).text
+	html = html.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
+	dom = hp.fromstring(html)
+	selector = 'div.pagination > span:last-child > a:last-child'
+	return int(dom.cssselect(selector)[0].text_content())
+
 # Get inputs
+nsNationName = input('Enter your NS nation name for identification purposes: ')
+userAgent = f'Script by The Ice States to save a Forum 7 thread. Run by {nsNationName}.'
 threadLink = input('Enter thread link: ')
-pageNo = int(input('Enter the amount of pages: '))
+pageNo = getPageNo(threadLink)
+print(f'Identified {pageNo} pages.')
 tn = input('Enter shorthand version of thread name: ')
 
 # Create a new directory because the specified path does not exist
@@ -36,7 +47,7 @@ while item < pageNo:
 		# Fetch page HTML
 		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching ' + str(item) + '.html...')
 		page = threadLink + '&start=' + str(item * 25)
-		html = requests.get(page, headers={'User-Agent': 'Script by The Ice States to save a Forum 7 thread.'}).text
+		html = requests.get(page, headers={'User-Agent': userAgent}).text
 		originalTime = time.time()
 
 		# Fix links to NS website and replace links to forum pages
