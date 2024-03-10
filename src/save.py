@@ -14,9 +14,11 @@ import pdfkit
 import time
 import os
 
-def getPageNo(threadLink):
-	page = threadLink
-	html = requests.get(page, headers={'User-Agent': userAgent}).text
+def getMarkup(link, userAgent):
+	return requests.get(link, headers={'User-Agent': userAgent}).text
+
+def getPageNo(threadLink, userAgent):
+	html = getMarkup(threadLink, userAgent)
 	html = html.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
 	dom = hp.fromstring(html)
 	selector = 'div.pagination > span:last-child > a:last-child'
@@ -26,7 +28,7 @@ def getPageNo(threadLink):
 nsNationName = input('Enter your NS nation name for identification purposes: ')
 userAgent = f'Script by The Ice States to save a Forum 7 thread. Run by {nsNationName}.'
 threadLink = input('Enter thread link: ')
-pageNo = getPageNo(threadLink)
+pageNo = getPageNo(threadLink, userAgent)
 print(f'Identified {pageNo} pages.')
 tn = input('Enter shorthand version of thread name: ')
 
@@ -47,7 +49,7 @@ while item < pageNo:
 		# Fetch page HTML
 		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching ' + str(item) + '.html...')
 		page = threadLink + '&start=' + str(item * 25)
-		html = requests.get(page, headers={'User-Agent': userAgent}).text
+		html = getMarkup(page, userAgent)
 		originalTime = time.time()
 
 		# Fix links to NS website and replace links to forum pages
