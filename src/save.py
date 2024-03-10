@@ -61,7 +61,11 @@ while item < pageNo:
 		
 		# Save page PDF
 		print('Saving ' + str(item) + '.pdf...')
-		c = pdfkit.configuration(wkhtmltopdf = 'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
+
+		# Why: Set wkhtmltopdf executable to a variable to prevent pdfkit configuration errors on certain iterations because of failure to escape the Windows path separator
+		wkhtmltopdf_path = os.path.join('C:' + os.sep,'Program Files','wkhtmltopdf','bin','wkhtmltopdf.exe')
+		
+		c = pdfkit.configuration(wkhtmltopdf = wkhtmltopdf_path)
 		pdfkit.from_string(html.decode('utf-8'), tn + '/' + str(item) + '.pdf', {'enable-local-file-access': ''}, configuration=c)
 		print('Saved page ' + str(item + 1) + ' in PDF!')
 		
