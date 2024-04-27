@@ -1,16 +1,13 @@
-# Dependencies: PdfKit, WkHtmlToPdf, Lxml, Cssselect
+# Dependencies: Lxml, Cssselect
 # https://cssselect.readthedocs.io/en/latest/
-# https://pypi.org/project/pdfkit/
-# https://wkhtmltopdf.org/
 # https://lxml.de/
 
 # NB: this code is run in a folder wherein threads are stored as folders by this program.
-# The saved files are then uploaded manually to the 'QA-Archives' repository using the Github web interface.
+# Forum pages are saved to the Internet Archive to manage repository sizes.
 
 # Get modules
 import lxml.html as hp
 import requests
-import pdfkit
 import time
 import os
 
@@ -25,38 +22,7 @@ def getPageNo(threadLink, userAgent):
 	return int(dom.cssselect(selector)[0].text_content())
 
 def archive(item, page, userAgent):
-	html = getMarkup(page, userAgent)
-
-	# Fix links to NS website and replace links to forum pages
-	html = html.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
-	dom = hp.fromstring(html)
-	for link in dom.cssselect('.pagination span:nth-of-type(1) a'):
-		link.set('href', value=('https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + tn + '/' + str(int(link.text_content()) - 1) + '.html'))
-	html = hp.tostring(dom);
-	
-	# Save page HTML
-	print('Saving ' + str(item) + '.html...')
-	file = open(tn + '/' + str(item) + '.html', 'wb')
-	file.write(html)
-	file.close()
-	print('Saved page ' + str(item + 1) + ' in HTML!')
-
-	# Replace links to other HTML pages with PDF pages
-	dom = hp.fromstring(html)
-	for link in dom.cssselect('.pagination span:nth-of-type(1) a'):
-		link.set('href', value=('https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + tn + '/' + str(int(link.text_content()) - 1) + '.pdf'))
-	html = hp.tostring(dom);
-	
-	# Save page PDF
-	print('Saving ' + str(item) + '.pdf...')
-
-	# Why: Set wkhtmltopdf executable to a variable to prevent pdfkit configuration errors on certain iterations because of failure to escape the Windows path separator
-	wkhtmltopdf_path = os.path.join('C:' + os.sep,'Program Files','wkhtmltopdf','bin','wkhtmltopdf.exe')
-	
-	c = pdfkit.configuration(wkhtmltopdf = wkhtmltopdf_path)
-	pdfkit.from_string(html.decode('utf-8'), tn + '/' + str(item) + '.pdf', {'enable-local-file-access': ''}, configuration=c)
-	print('Saved page ' + str(item + 1) + ' in PDF!')
-
+	html = getMarkup(f'https://web.archive.org/save/{page}', userAgent)
 
 # Get inputs
 nsNationName = input('Enter your NS nation name for identification purposes: ')
@@ -81,8 +47,9 @@ while item < pageNo:
 			time.sleep(originalTime + 20 - time.time())
 		
 		# Fetch page HTML
-		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching ' + str(item) + '.html...')
-		page = threadLink + '&start=' + str(item * 25)
+		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching page ' + str(item) + '...')
+		pageLinkFragment = '&start=' + str(item * 25) if item != 0 else ''
+		page = threadLink + pageLinkFragment
 		originalTime = time.time()
 		archive(item, page, userAgent)
 		

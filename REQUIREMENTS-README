@@ -2,5 +2,3 @@ The following requirements are needed to be able to run the source code (in /src
 
 Python modules,
 run "pip install -r PIP-REQUIREMENTS.TXT" in the command line
-
-wkhtmltopdf, ~0.12. https://wkhtmltopdf.org/index.html
