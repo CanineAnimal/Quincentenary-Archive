@@ -24,6 +24,41 @@ def getPageNo(threadLink, userAgent):
 	selector = 'div.pagination > span:last-child > a:last-child'
 	return int(dom.cssselect(selector)[0].text_content())
 
+def archive(item, page, userAgent):
+	html = getMarkup(page, userAgent)
+	originalTime = time.time()
+
+	# Fix links to NS website and replace links to forum pages
+	html = html.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
+	dom = hp.fromstring(html)
+	for link in dom.cssselect('.pagination span:nth-of-type(1) a'):
+		link.set('href', value=('https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + tn + '/' + str(int(link.text_content()) - 1) + '.html'))
+	html = hp.tostring(dom);
+	
+	# Save page HTML
+	print('Saving ' + str(item) + '.html...')
+	file = open(tn + '/' + str(item) + '.html', 'wb')
+	file.write(html)
+	file.close()
+	print('Saved page ' + str(item + 1) + ' in HTML!')
+
+	# Replace links to other HTML pages with PDF pages
+	dom = hp.fromstring(html)
+	for link in dom.cssselect('.pagination span:nth-of-type(1) a'):
+		link.set('href', value=('https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + tn + '/' + str(int(link.text_content()) - 1) + '.pdf'))
+	html = hp.tostring(dom);
+	
+	# Save page PDF
+	print('Saving ' + str(item) + '.pdf...')
+
+	# Why: Set wkhtmltopdf executable to a variable to prevent pdfkit configuration errors on certain iterations because of failure to escape the Windows path separator
+	wkhtmltopdf_path = os.path.join('C:' + os.sep,'Program Files','wkhtmltopdf','bin','wkhtmltopdf.exe')
+	
+	c = pdfkit.configuration(wkhtmltopdf = wkhtmltopdf_path)
+	pdfkit.from_string(html.decode('utf-8'), tn + '/' + str(item) + '.pdf', {'enable-local-file-access': ''}, configuration=c)
+	print('Saved page ' + str(item + 1) + ' in PDF!')
+
+
 # Get inputs
 nsNationName = input('Enter your NS nation name for identification purposes: ')
 userAgent = f'Script by The Ice States to save a Forum 7 thread. Run by {nsNationName}.'
@@ -49,38 +84,7 @@ while item < pageNo:
 		# Fetch page HTML
 		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching ' + str(item) + '.html...')
 		page = threadLink + '&start=' + str(item * 25)
-		html = getMarkup(page, userAgent)
-		originalTime = time.time()
-
-		# Fix links to NS website and replace links to forum pages
-		html = html.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
-		dom = hp.fromstring(html)
-		for link in dom.cssselect('.pagination span:nth-of-type(1) a'):
-			link.set('href', value=('https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + tn + '/' + str(int(link.text_content()) - 1) + '.html'))
-		html = hp.tostring(dom);
-		
-		# Save page HTML
-		print('Saving ' + str(item) + '.html...')
-		file = open(tn + '/' + str(item) + '.html', 'wb')
-		file.write(html)
-		file.close()
-		print('Saved page ' + str(item + 1) + ' in HTML!')
-
-		# Replace links to other HTML pages with PDF pages
-		dom = hp.fromstring(html)
-		for link in dom.cssselect('.pagination span:nth-of-type(1) a'):
-			link.set('href', value=('https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + tn + '/' + str(int(link.text_content()) - 1) + '.pdf'))
-		html = hp.tostring(dom);
-		
-		# Save page PDF
-		print('Saving ' + str(item) + '.pdf...')
-
-		# Why: Set wkhtmltopdf executable to a variable to prevent pdfkit configuration errors on certain iterations because of failure to escape the Windows path separator
-		wkhtmltopdf_path = os.path.join('C:' + os.sep,'Program Files','wkhtmltopdf','bin','wkhtmltopdf.exe')
-		
-		c = pdfkit.configuration(wkhtmltopdf = wkhtmltopdf_path)
-		pdfkit.from_string(html.decode('utf-8'), tn + '/' + str(item) + '.pdf', {'enable-local-file-access': ''}, configuration=c)
-		print('Saved page ' + str(item + 1) + ' in PDF!')
+		archive(item, page, userAgent)
 		
 		tries = 0
 		item += 1
