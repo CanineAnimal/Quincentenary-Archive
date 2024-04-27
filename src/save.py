@@ -26,7 +26,6 @@ def getPageNo(threadLink, userAgent):
 
 def archive(item, page, userAgent):
 	html = getMarkup(page, userAgent)
-	originalTime = time.time()
 
 	# Fix links to NS website and replace links to forum pages
 	html = html.replace('href="./', 'href="https://forum.nationstates.net/').replace('src="./', 'href="https://forum.nationstates.net/').replace('src="//', 'src="https://').replace('href="//', 'href="https://')
@@ -84,6 +83,7 @@ while item < pageNo:
 		# Fetch page HTML
 		print('Delay since last request: ' + str(time.time() - originalTime) + ' s. Fetching ' + str(item) + '.html...')
 		page = threadLink + '&start=' + str(item * 25)
+		originalTime = time.time()
 		archive(item, page, userAgent)
 		
 		tries = 0
