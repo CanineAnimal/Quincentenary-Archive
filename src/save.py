@@ -12,7 +12,10 @@ import time
 import os
 
 def getMarkup(link, userAgent):
-	return requests.get(link, headers={'User-Agent': userAgent}).text
+	result = requests.get(link, headers={'User-Agent': userAgent})
+	if not result.ok:
+		raise RuntimeError("Request failed")
+	return result.text
 
 def getPageNo(threadLink, userAgent):
 	html = getMarkup(threadLink, userAgent)
@@ -22,7 +25,10 @@ def getPageNo(threadLink, userAgent):
 	return int(dom.cssselect(selector)[0].text_content())
 
 def archive(item, page, userAgent):
-	html = getMarkup(f'https://web.archive.org/save/{page}', userAgent)
+	try:
+		html = getMarkup(f'https://web.archive.org/save/{page}', userAgent)
+	except RuntimeError as exc:
+		raise RuntimeError("Archiving may have reached daily limits") from exc
 
 # Get inputs
 nsNationName = input('Enter your NS nation name for identification purposes: ')
