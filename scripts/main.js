@@ -53,8 +53,9 @@ function searchLink(){
 			if(link.indexOf('start=') != -1){
 				page = Math.floor(Number.parseInt(link.split('start=')[1].split('&')[0])/25);
 			}
-			if(window.thread == undefined){
-				alert('Thread not found. Either your link is incorrect, or the link you entered is from a thread not saved in the HTML Archive.');
+			isValidForumLinkNotLocallyArchived = (window.thread === undefined)
+			if(isValidForumLinkNotLocallyArchived){
+				location.href = 'https://web.archive.org/' + link;
 			}else{
 				if(window.page == undefined){
 					location.href = 'https://htmlpreview.github.io/?https://github.com/CanineAnimal/QA-Archives/blob/main/' + thread + '/0.html';
