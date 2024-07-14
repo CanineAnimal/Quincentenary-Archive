@@ -36,11 +36,6 @@ userAgent = f'Script by The Ice States to save a Forum 7 thread. Run by {nsNatio
 threadLink = input('Enter thread link: ')
 pageNo = getPageNo(threadLink, userAgent)
 print(f'Identified {pageNo} pages.')
-tn = input('Enter shorthand version of thread name: ')
-
-# Create a new directory because the specified path does not exist
-if not os.path.exists('./' + tn):
-    os.makedirs('./' + tn)
 
 # Loop through thread
 tries = 0
