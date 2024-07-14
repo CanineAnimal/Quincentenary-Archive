@@ -39,7 +39,7 @@ print(f'Identified {pageNo} pages.')
 
 # Loop through thread
 tries = 0
-item = 0
+item = int(input('Enter starting page index (zero-based): '))
 originalTime = time.time() - 20;
 while item < pageNo:
 	try:	
